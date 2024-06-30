@@ -1,0 +1,22 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "main": "websocket-server.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/websocket-server.js --max_old_space_size=8192 --NUM_CLIENTS=150 --MESSAGES_PER_CLIENT=150"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^20.14.9",
+    "concurrently": "^8.2.2",
+    "http": "^0.0.1-security",
+    "ws": "^8.17.1"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.5.2"
+  }
+}

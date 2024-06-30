@@ -1,0 +1,25 @@
+{
+  "name": "go",
+  "version": "1.0.0",
+  "main": "websocket.go",
+  "scripts": {
+    "activate": "start venv\\Scripts\\activate",
+    "start": "npm run activate && py main.py"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^20.14.9",
+    "commander": "^12.1.0",
+    "concurrently": "^8.2.2",
+    "http": "^0.0.1-security",
+    "pidusage": "^3.0.2",
+    "typescript": "^5.5.2",
+    "ws": "^8.17.1"
+  },
+  "devDependencies": {
+    "@types/pidusage": "^2.0.5",
+    "@types/ws": "^8.5.10"
+  }
+}

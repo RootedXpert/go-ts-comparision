@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat | GO</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var ws = new WebSocket("ws://localhost:8080/ws");
+
+        ws.onopen = function () {
+            console.log("Connected to WebSocket server");
+        };
+
+        ws.onmessage = function (event) {
+            var message = JSON.parse(event.data);
+            displayMessage(message);
+        };
+
+        function sendMessage() {
+            var sender = document.getElementById("sender").value;
+            var content = document.getElementById("content").value;
+            var message = {
+                sender: sender,
+                content: content
+            };
+            ws.send(JSON.stringify(message));
+            document.getElementById("content").value = "";
+        }
+
+        function displayMessage(message) {
+                var messages = document.getElementById("messages");
+                var messageElement = document.createElement("div");
+                messageElement.classList.add("alert", "alert-info");
+                messageElement.textContent = message.sender + ": " + message.content;
+                console.log(message);
+                // Append the new message
+                messages.appendChild(messageElement);
+            }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">WebSocket Chat</h1>
+                <div id="messages"></div>
+                <hr>
+                <form>
+                    <div class="form-group">
+                        <label for="sender">Name:</label>
+                        <input type="text" id="sender" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Message:</label>
+                        <input type="text" id="content" class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
