@@ -4,9 +4,11 @@
   "main": "websocket.go",
   "scripts": {
     "build": "go build main.go",
+    "build:ts": "tsc",
     "start:go": "cd ../go && npm run start",
     "start:ts": "cd ../typescript && npm run start",
-    "performance:go": "go run main.go -clients 500 -messages 500 -server go"
+    "performance:go": "go run main.go -clients 500 -messages 500 -server go",
+    "performance:ts": "node dist/typescript-performance.js --NUM_CLIENTS=500 --MESSAGES_PER_CLIENT=500"
   },
   "author": "",
   "license": "ISC",

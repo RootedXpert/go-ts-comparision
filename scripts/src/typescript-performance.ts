@@ -1,8 +1,15 @@
 import { randomUUID } from "crypto";
 import WebSocket from "ws";
 import fs from "fs";
-import { Message } from "./websocket-server";
 import path from "path";
+
+export interface Message {
+  sender: string;
+  content: string;
+  id: string;
+  iat: number;
+  type: string;
+}
 
 interface simulateClientsParams {
   NUM_CLIENTS: number;
@@ -23,6 +30,26 @@ interface Matrix {
   min?: number;
   max?: number;
 }
+
+// Constants
+const PORT = 8080;
+const HTML_FILE_PATH = path.join(process.cwd(), "static", "index.html");
+const WS_PATH = "/ws";
+
+const args = process.argv.slice(2); // Slice off 'node' and script name
+
+let NUM_CLIENTS = 1000;
+let MESSAGES_PER_CLIENT = 100;
+
+// Parse command-line arguments
+args.forEach((arg) => {
+  const [key, value] = arg.split("=");
+  if (key === "--NUM_CLIENTS") {
+    NUM_CLIENTS = parseInt(value);
+  } else if (key === "--MESSAGES_PER_CLIENT") {
+    MESSAGES_PER_CLIENT = parseInt(value);
+  }
+});
 
 const simulateClients = ({
   NUM_CLIENTS,
@@ -174,4 +201,4 @@ const simulateClients = ({
   }
 };
 
-export default simulateClients;
+simulateClients({ NUM_CLIENTS, MESSAGES_PER_CLIENT, PORT });

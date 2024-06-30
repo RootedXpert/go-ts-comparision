@@ -4,7 +4,7 @@
   "main": "websocket-server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/websocket-server.js --max_old_space_size=8192 --NUM_CLIENTS=150 --MESSAGES_PER_CLIENT=150"
+    "start": "node dist/websocket-server.js --max_old_space_size=8192"
   },
   "author": "",
   "license": "ISC",
