@@ -210,7 +210,7 @@ func calculateOverallAverages() {
 		log.Fatalf("Error marshaling results to JSON: %v\n", err)
 	}
 
-	outputDir := "metrics"
+	outputDir := "metric"
 	err = os.MkdirAll(outputDir, 0755)
 	if err != nil {
 		log.Fatalf("Error creating output directory: %v\n", err)
