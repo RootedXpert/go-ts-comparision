@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Metrics Dashboard</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link to custom styles -->
+    <link rel="stylesheet" href="path/to/styles.css"> <!-- Update path accordingly -->
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom CSS for cards -->
+    <style>
+        /* Custom styles for small flex cards */
+        .flex-card {
+            width: 300px;
+            /* Adjust width as needed */
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .flex-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .flex-card .card-body {
+            padding: 10px;
+        }
+
+        .flex-card .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            /* Align items vertically */
+        }
+
+        .flex-card .card-title .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .flex-card .card-text {
+            margin-bottom: 8px;
+            /* Adjust spacing between text rows */
+            color: #666;
+            display: flex;
+            align-items: center;
+            /* Align items vertically */
+        }
+
+        .flex-card .card-text .icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Performance Metrics Dashboard</h1>
+
+        <div class="d-flex flex-wrap justify-content-around">
+            <!-- Loop to dynamically generate small flex cards for each dataset -->
+            {% for report_key, report_info in reports.items() %}
+            <div class="flex-card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <span class="icon material-icons">bar_chart</span>{{ report_info.technology }} Metrics
+                    </h5>
+                    <p class="card-text">
+                        <span class="icon material-icons">person</span><span>Active Client: {{ report_info.active_client
+                            }}</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="icon material-icons">message</span><span>Messages Per Client: {{
+                            report_info.message_per_client }}</span>
+                    </p>
+                    <p class="card-text">
+                        Average processing times, distribution plots, etc.
+                    </p>
+                    <a href="{{ report_info.path }}" class="btn btn-primary">View Report</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

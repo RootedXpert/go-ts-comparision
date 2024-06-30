@@ -2,3 +2,4 @@ node_modules
 dist
 metric
 venv
+__pycache__

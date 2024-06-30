@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ technology.capitalize() }} - Active Client {{ active_client }} Message per {{ message_per_client }}
+    </title>
+    <!-- Google Fonts - Open Sans -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+            position: relative;
+            /* Added to position button */
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: relative;
+            /* Added to position button */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .graph-card {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .graph-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ technology.capitalize() }} Performance Metrics</h1>
+            <p>Active Clients: {{ active_client }}</p>
+            <p>Messages per Client: {{ message_per_client }}</p>
+        </div>
+
+        <!-- Bar Plot of Average Message Times -->
+        <div class="graph-card">
+            <h2 class="graph-title">Bar Plot: Average Message Times</h2>
+            {{ bar_div | safe }}
+        </div>
+
+        <!-- Box Plot of Message Times Distribution -->
+        <div class="graph-card">
+            <h2 class="graph-title">Box Plot: Message Times Distribution</h2>
+            {{ box_div | safe }}
+        </div>
+
+        <!-- Scatter Plot: Min Time vs. Max Time -->
+        <div class="graph-card">
+            <h2 class="graph-title">Scatter Plot: Min Time vs. Max Time</h2>
+            {{ scatter_div | safe }}
+        </div>
+
+        <!-- Violin Plot: Distribution of Min Time -->
+        <div class="graph-card">
+            <h2 class="graph-title">Violin Plot: Distribution of Min Time</h2>
+            {{ violin_div | safe }}
+        </div>
+
+        <a href="dist/{{ index_path }}" class="back-button">Back to Dashboard</a>
+    </div>
+</body>
+
+</html>
